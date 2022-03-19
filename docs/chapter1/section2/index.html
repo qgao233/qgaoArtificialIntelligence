@@ -1,0 +1,490 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1.2 感知机（perceptron） · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../section3/" />
+    
+    
+    <link rel="prev" href="../section1/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    ai学习篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    1. 入门
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../section1/">
+            
+                <a href="../section1/">
+            
+                    
+                    1.1 机器学习分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    1.2 感知机（perceptron）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../section3/">
+            
+                <a href="../section3/">
+            
+                    
+                    1.3 适应性线性神经元（Adaptive linear neurons）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../section4/">
+            
+                <a href="../section4/">
+            
+                    
+                    1.4 通过标准化特征值来优化梯度下降
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1.2 感知机（perceptron）</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright &#xA9; qgao 2021-* all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
+<li><div><a href="#&#x600E;&#x4E48;&#x4F30;&#x8BA1;w">&#x600E;&#x4E48;&#x4F30;&#x8BA1;W</a><i></i></div></li>
+<li><div><a href="#&#x6743;&#x91CD;&#x66F4;&#x65B0;&#x7684;&#x539F;&#x7406;">&#x6743;&#x91CD;&#x66F4;&#x65B0;&#x7684;&#x539F;&#x7406;</a><i></i></div></li>
+<li><div><a href="#python&#x4EE3;&#x7801;&#x5B9E;&#x73B0;">python&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</a><i></i></div></li>
+</ul>
+</div>
+
+<h1 id="1-&#x611F;&#x77E5;&#x673A;&#xFF08;perceptron&#xFF09;">1. &#x611F;&#x77E5;&#x673A;&#xFF08;perceptron&#xFF09;</h1>
+<blockquote>
+<p>&#x5C5E;&#x4E8E;&#x76D1;&#x7763;&#x5F0F;&#x548C;&#x6734;&#x7D20;&#x8D1D;&#x53F6;&#x65AF;&#x7B97;&#x6CD5;</p>
+<p>&#x591A;&#x5143;&#x5206;&#x7C7B;&#xFF1A;&#x53EF;&#x4EE5;&#x533A;&#x5206;&#x8D85;&#x8FC7;&#x4E24;&#x79CD;&#x79CD;&#x7C7B;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x672C;&#xFF0C;&#x5982;&#xFF0C;&#x4E09;&#x79CD;&#xFF0C;&#x56DB;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x672C;&#x3002;
+&#x65B9;&#x6CD5;&#x5206;&#x4E3A;1v1&#x6216;1vAll&#xFF0C;&#x4F46;&#x662F;&#x672C;&#x8D28;&#x4E0A;&#x8FD8;&#x662F;&#x90FD;&#x5229;&#x7528;&#x7684;&#x4E8C;&#x5143;&#x5206;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<ul>
+<li>1v1&#xFF1A;&#x4ECE;&#x6709;n&#x4E2A;&#x79CD;&#x7C7B;&#x7684;&#x6570;&#x636E;&#x4E2D;&#x62BD;&#x53D6;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x672C;&#xFF0C;&#x4E00;&#x5171;&#x505A;C_n^2&#x6B21;&#x5206;&#x7C7B;&#xFF1B;</li>
+<li>1vAll&#xFF1A;&#x4ECE;&#x6709;n&#x4E2A;&#x79CD;&#x7C7B;&#x7684;&#x6570;&#x636E;&#x4E2D;&#x62BD;&#x53D6;&#x4E24;&#x79CD;&#x6765;&#x4F7F;&#x7528;&#x4E8C;&#x5143;&#x5206;&#x7C7B;&#xFF0C;&#x7B2C;1&#x79CD;&#x662F;&#x968F;&#x4FBF;&#x62BD;&#x53D6;1&#x79CD;&#xFF0C;&#x7136;&#x540E;&#x5269;&#x4E0B;&#x9664;&#x5DF2;&#x7ECF;&#x62BD;&#x4E86;&#x7684;&#x4E00;&#x79CD;&#x5916;&#x7684;&#x5176;&#x4F59;n-1&#x4E3A;&#x7B2C;2&#x79CD;&#xFF0C;&#x6309;&#x7167;&#x6B21;&#x5E8F;&#x4E00;&#x5171;&#x505A;n&#x6B21;&#x5206;&#x7C7B;&#x3002;</li>
+</ul>
+</blockquote>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4E8C;&#x5143;&#x5206;&#x7C7B; &#xFF08;&#x6307;&#x53EA;&#x80FD;&#x533A;&#x5206;&#x4E24;&#x79CD;&#x79CD;&#x7C7B;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x672C;&#xFF09;&#x7B97;&#x6CD5;&#xFF0C;&#x89C4;&#x5B9A;&#x6570;&#x636E;&#x5FC5;&#x987B;&#x7EBF;&#x6027;&#x53EF;&#x5206;&#xFF0C;&#x5426;&#x5219;&#x8BAD;&#x7EC3;&#x65F6;&#x65E0;&#x6CD5;&#x505C;&#x4E0B;&#x6765;&#xFF0C;&#x8BE5;&#x7B97;&#x6CD5;&#x5E0C;&#x671B;&#x5728;&#x4E00;&#x5806;&#x6570;&#x636E;&#x91CC;&#x9762;&#x627E;&#x5230;&#x4E00;&#x6761;&#x76F4;&#x7EBF;&#x80FD;&#x4F7F;&#x5176;&#x88AB;&#x5206;&#x6210;2&#x7C7B;&#x3002;
+&#x8BE5;&#x76F4;&#x7EBF;&#x5B9A;&#x4E49;&#x4E3A;<code>Z</code>.</p>
+<p><code>Z=w1x1+w2x2+w3x3+w4x4+&#x2026;+wnxn.</code></p>
+<p>&#x89C4;&#x5B9A;&#xFF1A;</p>
+<pre><code>&#x3C6;(Z)=1,if Z &gt;= &#x3B8;
+&#x3C6;(Z)=-1,otherwise
+</code></pre><blockquote>
+<p>&#x6CE8;:x1,x2,x3&#x2026;xn&#x4E3A;&#x6837;&#x672C;&#x7684;&#x5404;&#x4E2A;&#x7279;&#x5F81;&#xFF0C;w1,w2,w3&#x2026;wn&#x4E3A;&#x5404;&#x4E2A;&#x7279;&#x5F81;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x6743;&#x91CD;&#x503C;&#x3002;</p>
+</blockquote>
+<p>&#x4F46;&#x662F;<code>&#x3B8;</code>&#x5230;&#x5E95;&#x8981;&#x8BBE;&#x591A;&#x5C11;&#xFF0C;&#x6709;&#x4E9B;&#x9EBB;&#x70E6;&#xFF0C;&#x6240;&#x4EE5;&#x6539;&#x53D8;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#x53D8;&#x6210;&#x4E86;&#xFF1A;&#x5982;&#x679C;<code>Z-&#x3B8;&gt;=0</code>&#xFF0C;&#x90A3;&#x4E48;&#x65B0;&#x7684;Z&#x7684;&#x5B9A;&#x4E49;&#x6539;&#x4E3A;
+<code>Z=-&#x3B8;+w1x1+w2x2+w3x3+w4x4+&#x2026;+wnxn.</code>
+&#x8FD9;&#x4E2A;<code>-&#x3B8;</code>&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x622A;&#x8DDD;&#xFF0C;&#x4E3A;&#x4E86;&#x7EDF;&#x4E00;&#xFF0C;&#x5C06;<code>-&#x3B8;</code>&#x6539;&#x6210;<code>w0x0</code>&#xFF0C;&#x5176;&#x4E2D;<code>x0</code>&#x5176;&#x5B9E;&#x5C31;&#x7B49;&#x4E8E;1&#xFF0C;&#x800C;<code>w0</code>&#x5219;&#x662F;<code>-&#x3B8;</code>.</p>
+<p>&#x5219;&#x65B0;&#x7684;&#x5B9A;&#x4E49;&#x5F0F;&#x4E0E;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#x5219;&#x53D8;&#x4E3A;&#x4EE5;&#x4E0B;&#xFF1A;</p>
+<pre><code>Z=w0x0+w1x1+w2x2+w3x3+w4x4+&#x2026;+wnxn.
+&#x3C6;(Z)=1,if Z &gt;= 0
+&#x3C6;(Z)=-1,otherwise
+</code></pre><blockquote>
+<p>&#xFF08;&#x8FD9;&#x91CC;&#x63D0;&#x9192;&#x4E00;&#x4E0B;&#xFF0C;&#x6709;&#x5173;&#x4E8C;&#x5206;&#x7C7B;&#x3C6;(Z)&#x5230;&#x5E95;&#x662F;&#x5206;&#x4E3A;1&#x548C;0&#xFF0C;&#x8FD8;&#x662F;1&#x6216;-1&#xFF0C;&#x662F;&#x7531;&#x7B97;&#x6CD5;&#x51B3;&#x5B9A;&#x6765;&#x7684;&#xFF0C;&#x5728;&#x611F;&#x77E5;&#x673A;&#x91CC;&#xFF0C;&#x5206;&#x6210;1&#x548C;-1&#x53EF;&#x4EE5;&#x6210;&#x529F;&#x63A8;&#x5BFC;&#x51FA;&#x6765;&#x3002;&#xFF09;</p>
+</blockquote>
+<p>&#x4E3A;&#x4E86;&#x4E66;&#x5199;&#x65B9;&#x4FBF;&#xFF0C;Z&#x7684;&#x5B9A;&#x4E49;&#x7528;&#x5411;&#x91CF;&#x8868;&#x793A;&#x3002;
+<code>Z=W^T*X</code>&#x3010;&#x5DE6;&#x8F6C;&#x53F3;&#x4E0D;&#x8F6C;&#x662F;&#x4E3A;&#x6570;&#x3011;</p>
+<p><img src="media/1.png" alt=""></p>
+<h2 id="&#x600E;&#x4E48;&#x4F30;&#x8BA1;w">&#x600E;&#x4E48;&#x4F30;&#x8BA1;W</h2>
+<p><img src="media/2.png" alt=""></p>
+<p>&#x9996;&#x5148;&#x5F97;&#x521D;&#x59CB;&#x5316;&#x5BF9;&#x5E94;&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x7684;&#x6743;&#x91CD;<code>w</code>&#xFF0C;&#x53EF;&#x4EE5;&#x5168;&#x90E8;&#x521D;&#x59CB;&#x5316;&#x4E3A;0&#xFF0C;&#x4F46;&#x57FA;&#x672C;&#x4E0A;&#x662F;&#x5C06;&#x6743;&#x91CD;&#x503C;&#x521D;&#x59CB;&#x5316;&#x4E3A;0&#x9644;&#x8FD1;&#x7684;&#x968F;&#x673A;&#x6570;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x4EE3;&#x5165;&#x5404;&#x4E2A;&#x6837;&#x672C;&#x7684;&#x7279;&#x5F81;&#x6765;&#x8BAD;&#x7EC3;<code>W</code>&#xFF08;&#x5411;&#x91CF;&#xFF09;&#x3002;&#x4E3E;&#x4F8B;&#x5982;&#x4E0B;
+&#x56E0;&#x4E3A;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x90FD;&#x6709;&#x5BF9;&#x5E94;&#x7684;<strong>&#x6807;&#x7B7E;</strong>&#xFF08;&#x5BF9;&#x5E94;&#x4E0A;&#x9762;&#x7684;&#x201C;&#x7B54;&#x6848;&#x201D;&#x6216;&#x201C;&#x53CD;&#x9988;&#x201D;&#xFF0C;&#x5373;&#x8BE5;&#x6837;&#x672C;&#x5230;&#x5E95;&#x5C5E;&#x4E00;&#x54EA;&#x4E00;&#x7C7B;&#xFF09;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#x5728;&#x5C06;&#x67D0;&#x6837;&#x672C;&#x7684;&#x7279;&#x5F81;&#xFF08;&#x5411;&#x91CF;&#xFF09;&#x4E0E;&#x6743;&#x91CD;&#xFF08;&#x5411;&#x91CF;&#xFF09;&#x505A;&#x5185;&#x79EF;&#x540E;&#xFF0C;&#x518D;&#x7531;&#x4E0A;&#x9762;&#x7684;&#x5224;&#x65AD;&#x5F0F;&#x6765;&#x533A;&#x5206;&#x5230;&#x5E95;&#x8BE5;&#x6837;&#x672C;&#x5C5E;&#x4E8E;&#x54EA;&#x4E00;&#x7C7B;&#xFF0C;&#x5982;&#x679C;&#x5224;&#x65AD;&#x5F0F;&#x5224;&#x65AD;&#x51FA;&#x6765;&#x7684;&#x4E0E;&#x5B9E;&#x9645;&#x4E0A;&#x7684;&#x6807;&#x7B7E;&#x503C;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5219;&#x8981;&#x66F4;&#x65B0;&#x6743;&#x91CD;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x66F4;&#x65B0;&#x3002;</p>
+<p>&#x5728;&#x4E8C;&#x5206;&#x7C7B;&#x95EE;&#x9898;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x662F;&#x5728;&#x8BE5;&#x611F;&#x77E5;&#x673A;&#x7B97;&#x6CD5;&#x4E2D;&#xFF0C;&#x6807;&#x7B7E;&#x4EC5;&#x4E3A;1&#x6216;-1&#xFF0C;&#x800C;&#x4E0A;&#x8FF0;&#x7B97;&#x6CD5;&#x53EF;&#x7531;&#x516C;&#x5F0F;&#x63CF;&#x8FF0;&#x4E3A;&#xFF1A;
+&#x5982;&#x679C; <code>sign(W_t^T*X_n(t))&#x2260;y_n(t), &#x2460;</code>
+&#x5219; <code>W_(t+1)=W_t+y_n(t)*X_n(t);    &#x2461;</code>
+&#x5426;&#x5219;&#x4E0D;&#x66F4;&#x65B0;&#x6743;&#x91CD;&#x3002;</p>
+<p>&#x5176;&#x4E2D;<code>t</code>&#x8868;&#x793A;&#x67D0;&#x4E00;&#x6B21;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;<code>n</code>&#x8868;&#x793A;&#x67D0;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#xFF0C;<code>sign()</code>&#x5176;&#x5B9E;&#x5C31;&#x662F;<code>&#x3C6;(Z)</code>&#x3002;&#x5176;&#x4E2D;&#x8981;&#x6CE8;&#x610F;&#x6743;&#x91CD;&#x7684;&#x66F4;&#x65B0;&#x516C;&#x5F0F;&#x2461;&#xFF0C;<code>W</code>&#x4E3A;&#x5411;&#x91CF;&#xFF0C;&#x5373;&#x6BCF;&#x6B21;&#x66F4;&#x65B0;&#x90FD;&#x8981;&#x66F4;&#x65B0;&#x6240;&#x6709;&#x7279;&#x5F81;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x6743;&#x91CD;&#x503C;&#x3002;</p>
+<p>&#x5728;&#x2461;&#x4E2D;&#xFF0C;<code>W_(t+1)=W_t+&#x2206;W_t; &#x2206;W_t = y_n*X_n(t)</code>&#x3002;
+&#x800C;&#x6743;&#x91CD;&#x7684;&#x66F4;&#x65B0;&#x516C;&#x5F0F;&#x8FD8;&#x6709;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;
+<code>W_(t+1)=W_t+&#x2206;W_t; &#x2206;W_t = &#x3B7;*[y(n)-y &#x302;(n)]*X_n(t)&#xFF1B;&#x2462;</code>
+&#x5176;&#x4E2D;<code>&#x3B7;</code>&#x4E3A;&#x5B66;&#x4E60;&#x901F;&#x7387;&#x3002;</p>
+<p>&#x2462;&#x4E0E;&#x2461;&#x5176;&#x5B9E;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x9664;&#x5F00;&#x5B66;&#x4E60;&#x901F;&#x7387;&#x662F;&#x65B0;&#x589E;&#x52A0;&#x7684;&#xFF0C;&#x2462;&#x76F8;&#x6BD4;&#x2461;&#x53EA;&#x4E0D;&#x8FC7;&#x591A;&#x4E86;&#x4E00;&#x70B9;&#x4E1C;&#x897F;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#x660E;&#xFF1A;</p>
+<p>&#x5047;&#x5982;&#x4F30;&#x8BA1;&#x51FA;&#x7684;&#x5224;&#x65AD;&#x503C;&#x4E3A;-1&#xFF0C;&#x800C;&#x5B9E;&#x9645;&#x4E0A;&#x6807;&#x7B7E;&#x503C;&#x4E3A;1&#xFF0C;&#x90A3;&#x4E48;&#x2461;&#x5F0F;&#x7684;<code>&#x2206;W_t=1*X_n(t)</code>&#xFF0C;&#x90A3;&#x2462;&#x5F0F;&#x7684;<code>&#x2206;W_t</code>&#x5219;&#x4E3A;<code>1-(-1)*X_n(t)=2*X_n(t)</code>&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x53EA;&#x662F;&#x66F4;&#x65B0;&#x53D8;&#x66F4;&#x5FEB;&#x4E86;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x6982;&#x5FF5;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<h2 id="&#x6743;&#x91CD;&#x66F4;&#x65B0;&#x7684;&#x539F;&#x7406;">&#x6743;&#x91CD;&#x66F4;&#x65B0;&#x7684;&#x539F;&#x7406;</h2>
+<p>&#x81F3;&#x4E8E;&#x4E3A;&#x4F55;&#x6743;&#x91CD;&#x7684;&#x66F4;&#x65B0;&#x5982;&#x2461;&#x6240;&#x793A;&#xFF0C;&#x6982;&#x5FF5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x548C;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E00;&#x6837;&#xFF0C;&#x5982;&#x679C;&#x5224;&#x65AD;&#x51FA;&#x4E3A;-1&#xFF0C;&#x800C;&#x5B9E;&#x9645;&#x4E0A;&#x4E3A;+1&#xFF0C;&#x800C;&#x6839;&#x636E;&#x5224;&#x65AD;&#x5F0F;</p>
+<pre><code>&#x3C6;(Z)=1,if Z &gt;= 0
+&#x3C6;(Z)=-1,otherwise
+</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#x5224;&#x65AD;&#x6761;&#x4EF6;<code>Z</code>&#x4E3A;&#x4E24;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x6570;&#x91CF;&#x79EF;&#xFF0C;&#x7531;&#x4F59;&#x5F26;&#x516C;&#x5F0F;&#x53EF;&#x77E5;</p>
+<p><code>cos&#x3B8;=(W^T*X)/(||W^T ||&#x2219;||X||)  ,   0&lt;&#x3B8;&lt;180</code>
+&#x73B0;&#x5728;&#x7684;&#x60C5;&#x51B5;&#x662F;<code>&#x3C6;(Z)=-1</code>&#xFF0C;&#x5373;<code>Z&lt;0</code>,&#x5219;&#x610F;&#x5473;&#x7740;<code>cos&#x3B8;&lt;0</code>,&#x5373;<code>90&lt;&#x3B8;&lt;180</code>.
+&#x5219;&#x4E24;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x5939;&#x89D2;&#x4E3A;&#x949D;&#x89D2;&#xFF0C;
+<img src="media/3.png" alt="">
+&#x8FD9;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x6743;&#x91CD;&#x66F4;&#x65B0;&#x516C;&#x5F0F;&#x2461;&#xFF1A;
+<code>W^T+1*X</code>
+&#x539F;&#x6765;&#x7684;&#x6743;&#x91CD;&#x5411;&#x91CF;&#x52A0;&#x4E0A;&#x771F;&#x5B9E;&#x7684;&#x6807;&#x7B7E;&#x503C;1&#x4E58;&#x4EE5;&#x7279;&#x5F81;&#x5411;&#x91CF;&#xFF08;&#x8BE5;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x4E0E;&#x77E9;&#x9635;&#x7684;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x4E0D;&#x540C;&#xFF0C;&#x6CE8;&#x610F;&#x533A;&#x5206;&#xFF0C;&#x6B64;&#x5904;&#x53EA;&#x662F;&#x521A;&#x597D;&#x540D;&#x5B57;&#x662F;&#x8FD9;&#x4E2A;&#xFF09;&#xFF0C;&#x53EF;&#x5F97;&#x5230;&#x65B0;&#x7684;&#x6743;&#x91CD;<code>W_(t+1)</code>&#x3002;</p>
+<p>&#x7531;&#x56FE;&#x53EF;&#x77E5;&#xFF0C;&#x65B0;&#x7684;&#x6743;&#x91CD;&#x5411;&#x91CF;&#x4E0E;&#x7279;&#x5F81;&#x5411;&#x91CF;&#x7684;&#x5939;&#x89D2;&#x53D8;&#x5C0F;&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x610F;&#x5473;&#x7740;&#x4E24;&#x5411;&#x91CF;&#x7684;&#x6570;&#x91CF;&#x79EF;<code>Z</code>&#x5C06;&#x53D8;&#x5927;(&#x4ECE;<code>Z</code>&#x5C0F;&#x4E8E;0&#x5F80;<code>Z</code>&#x5927;&#x4E8E;0&#x7684;&#x65B9;&#x5411;&#x79FB;&#x52A8;&#xFF0C;&#x800C;&#x4E00;&#x65E6;&#x5927;&#x4E8E;0&#xFF0C;&#x90A3;&#x4E48;&#x5224;&#x65AD;&#x51FA;&#x7684;<code>&#x3C6;(Z)</code>&#x5C31;&#x548C;&#x6B63;&#x786E;&#x7684;&#x6807;&#x7B7E;1&#x4E00;&#x6837;&#x4E86;)&#xFF0C;&#x800C;&#x4ECE;&#x8D8B;&#x52BF;&#x4E0A;&#x6765;&#x770B;&#xFF0C;&#x5C06;&#x4F1A;&#x628A;<code>&#x3C6;(Z)</code>&#x7684;&#x503C;&#x671D;&#x7740;&#x6B63;&#x786E;&#x7684;&#x6807;&#x7B7E;&#x503C;&#x9760;&#x62E2;&#x3002;</p>
+<h2 id="python&#x4EE3;&#x7801;&#x5B9E;&#x73B0;">python&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</h2>
+<pre><code>import numpy as np    
+class Perceptron(object):    
+&quot;&quot;&quot;Perceptron classifier.  
+Parameters  
+------------  
+eta : float  
+Learning rate (between 0.0 and 1.0)  
+n_iter : int  
+Passes over the training dataset.  
+random_state : int  
+Random number generator seed for random weight  
+initialization.  
+Attributes  
+-----------  
+w_ : 1d-array  
+Weights after fitting.  
+errors_ : list  
+Number of misclassifications (updates) in each epoch.  
+&quot;&quot;&quot;    
+def __init__(self, eta=0.01, n_iter=50, random_state=1):    
+    self.eta = eta    
+    self.n_iter = n_iter    
+    self.random_state = random_state    
+
+def fit(self, X, y):    
+    &quot;&quot;&quot;Fit training data.  
+    Parameters  
+    ----------  
+    X : {array-like}, shape = [n_examples, n_features]  
+    Training vectors, where n_examples is the number of  
+    examples and n_features is the number of features.  
+    y : array-like, shape = [n_examples]  
+    Target values.  
+    Returns  
+    -------  
+    self : object  
+    &quot;&quot;&quot;    
+    rgen = np.random.RandomState(self.random_state)    
+    self.w_ = rgen.normal(loc=0.0, scale=0.01,    
+    size=1 + X.shape[1])    
+    self.errors_ = []    
+    for _ in range(self.n_iter):    
+        errors = 0    
+        for xi, target in zip(X, y):    
+            update = self.eta * (target - self.predict(xi))    
+            self.w_[1:] += update * xi    
+            self.w_[0] += update    
+            errors += int(update != 0.0)    
+        self.errors_.append(errors)    
+    return self    
+def net_input(self, X):    
+    &quot;&quot;&quot;Calculate net input&quot;&quot;&quot;    
+    return np.dot(X, self.w_[1:]) + self.w_[0]    
+def predict(self, X):    
+    &quot;&quot;&quot;Return class label after unit step&quot;&quot;&quot;    
+    return np.where(self.net_input(X) &gt;= 0.0, 1, -1)
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; qgao 2021-* all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022-03-19 12:12:21
+</span></footer>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../section1/" class="navigation navigation-prev " aria-label="Previous page: 1.1 机器学习分类">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../section3/" class="navigation navigation-next " aria-label="Next page: 1.3 适应性线性神经元（Adaptive linear neurons）">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.2 感知机（perceptron）","level":"1.2.2","depth":2,"next":{"title":"1.3 适应性线性神经元（Adaptive linear neurons）","level":"1.2.3","depth":2,"path":"chapter1/section3/index.md","ref":"chapter1/section3/index.md","articles":[]},"previous":{"title":"1.1 机器学习分类","level":"1.2.1","depth":2,"path":"chapter1/section1/index.md","ref":"chapter1/section1/index.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-lunr","-search","search-pro","back-to-top-button","chapter-fold","code","splitter","tbfed-pagefooter","page-treeview","popup","expandable-chapters","pageview-count","-sharing","sharing-plus","page-toc-button","livereload"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy qgao 2021-*","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"collapsed":false,"copyright":"Copyright &#169; qgao 2021-*","minHeaderCount":"2","minHeaderDeep":"2"},"chapter-fold":{},"livereload":{},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":4,"minTocSize":2},"back-to-top-button":{},"pageview-count":{},"sharing":{"qq":true,"all":["douban","facebook","google","instapaper","linkedin","twitter","weibo","messenger","qq","qzone","viber","whatsapp"],"douban":true,"facebook":true,"weibo":true,"twitter":true,"pocket":true,"google":true,"qzone":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter1/section2/index.md","mtime":"2022-03-19T04:12:21.556Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-03-19T04:22:42.679Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
