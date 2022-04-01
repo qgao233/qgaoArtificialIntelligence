@@ -9,7 +9,6 @@
         "page-treeview",
         "popup",
         "expandable-chapters",
-        "pageview-count",
         "-sharing", "sharing-plus",
         "page-toc-button"
     ],
@@ -28,15 +27,9 @@
             "douban": true,
             "facebook": true,
             "google": true,
-            "pocket": true,
             "qq": true,
-            "qzone": true,
             "twitter": true,
-            "weibo": true,
-            "all": [
-                "douban", "facebook", "google", "instapaper", "linkedin","twitter", "weibo", 
-                "messenger","qq", "qzone","viber","whatsapp"
-            ]
+            "weibo": true
         },
         "page-toc-button": {
             "maxTocDepth": 4,
